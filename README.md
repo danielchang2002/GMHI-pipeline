@@ -1,4 +1,4 @@
-# GMHI2: Gut Microbiome Health Index
+# GMHI: Gut Microbiome Health Index
 
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmhi2)
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmhi2)
