@@ -12,17 +12,17 @@ def main():
     parser = argparse.ArgumentParser(
         description="DESCRIPTION:\n"
         "GMHI2 version " + __version__ + " \n"
-        "Gut Microbiome Health Index 2 (GMHI2) is a robust index "
+        "Gut Microbiome Health Index (GMHI) is a robust index "
         "for evaluating health status based on the species-level taxonomic "
         "profile of a stool shotgun metagenome (gut microbiome) sample.\n\n"
         "AUTHORS: \n" + __author__ + "\n\n"
         "USAGE: \n"
-        "GMHI2 is a pipeline that takes as input two raw fastq files generated "
+        "GMHI is a pipeline that takes as input two raw fastq files generated "
         "from a paired end sequence, performs quality control, "
         "estimates microbial abundances, "
         "and returns as output a health index score.\n\n"
         "* Profiling a metagenome from raw reads:\n"
-        "$ gmhi2 --fastq1 metagenome1.fastq --fastq2 metagenome2.fastq\n\n",
+        "$ gmhi --fastq1 metagenome1.fastq --fastq2 metagenome2.fastq\n\n",
         formatter_class=RawTextHelpFormatter,
     )
 
@@ -46,9 +46,10 @@ def main():
         return
 
     up_to_date = prerun.check_versions()
-    if not up_to_date:
-        return
+    # if not up_to_date:
+    #     return
     prerun.check_and_install_databases()
+    input()
     pipeline.run(args)
 
 

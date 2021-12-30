@@ -32,7 +32,7 @@ version_dict = {
     "samtools": "1.14",
     "bedtools": "2.27.1",
     "trimmomatic": "0.39",
-    "metaphlan": "3.0.13",
+    "metaphlan2.py": "2.96.1",
 }
 
 
@@ -94,17 +94,18 @@ def check_versions():
 
 import hashlib
 
-hashes = {
-    "GRCh38_noalt_as.1.bt2": "a4841a0b52b76812ab5a00b7d390111d",
-    "GRCh38_noalt_as.2.bt2": "56c4081853880066a4de5d74e559434c",
-    "GRCh38_noalt_as.3.bt2": "b2d325b6836d0e957c349d3557b5a743",
-    "GRCh38_noalt_as.4.bt2": "aee1363daba2b49637417b9213281591",
-    "GRCh38_noalt_as.rev.1.bt2": "190f2ba81e148b298fb00129f6653a8a",
-    "GRCh38_noalt_as.rev.2.bt2": "57080fad22f8ff849639433b20f45ec3",
-}
 
 
 def check_GRCh38_noalt_as():
+    hashes = {
+        "GRCh38_noalt_as.1.bt2": "a4841a0b52b76812ab5a00b7d390111d",
+        "GRCh38_noalt_as.2.bt2": "56c4081853880066a4de5d74e559434c",
+        "GRCh38_noalt_as.3.bt2": "b2d325b6836d0e957c349d3557b5a743",
+        "GRCh38_noalt_as.4.bt2": "aee1363daba2b49637417b9213281591",
+        "GRCh38_noalt_as.rev.1.bt2": "190f2ba81e148b298fb00129f6653a8a",
+        "GRCh38_noalt_as.rev.2.bt2": "57080fad22f8ff849639433b20f45ec3",
+    }
+
     database = "GRCh38_noalt_as"
     print(database)
     correct = True
@@ -128,18 +129,30 @@ def check_GRCh38_noalt_as():
 
 
 def check_clade_markers():
-    print("clade markers")
-    subprocess.call(
-        [
-            "metaphlan",
-            "--install",
-            "--index",
-            "mpa_v30_CHOCOPhlAn_201901",
-            "--bowtie2db",
-            os.path.join(utils.DEFAULT_DB_FOLDER, "clade_markers"),
-        ]
-    )
-    print_check_message(True)
+    database = "clade_markers"
+    print(database)
+    hashes = { 
+    "mpa_v20_m200.md5" : "a2043a9d7ea30118c6fca2236afebfb7",
+    "mpa_v20_m200.tar" : "3dfb2b312757b800873fb5199c75bc38"  
+    }
+    correct = True
+    try:
+        for file in hashes:
+            h = hashlib.md5(
+                open(os.path.join(utils.DEFAULT_DB_FOLDER, database, file), "rb").read()
+            ).hexdigest()
+            gt = hashes[file]
+            if h != gt:
+                correct = False
+    except Exception:
+        # print(traceback.format_exc())
+        correct = False
+    print_check_message(correct)
+    if not correct:
+        print(
+            bcolors.WARNING + database, "database not found or corrupted", bcolors.ENDC
+        )
+    return correct
 
 
 def check_and_install_databases():
@@ -148,5 +161,7 @@ def check_and_install_databases():
     if not g_good:
         install_databases.install_GRCh38_noalt_as()
         check_GRCh38_noalt_as()
-    check_clade_markers()
+    c_good = check_clade_markers()
+    if not c_good:
+        install_databases.install_clade_markers()
     print("-" * 5, "Database checks done", "-" * 5, "\n")

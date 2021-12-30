@@ -1,4 +1,4 @@
-{% set name = "gmhi2" %}
+{% set name = "gmhi" %}
 {% set version = "1.0" %}
 
 package:
@@ -20,7 +20,7 @@ requirements:
     - samtools=1.14
     - bedtools=2.27.1
     - trimmomatic=0.39
-    - metaphlan=3.0.13
+    - metaphlan2=2.96.1
     - scikit-learn=1.0.1
 
 test:
