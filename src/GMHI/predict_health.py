@@ -1,4 +1,5 @@
 import pandas as pd
+from GMHI import GMHI
 import warnings
 from joblib import load
 import numpy as np
@@ -11,11 +12,10 @@ def get_clean_matrix():
     df = df.rename_axis(None, axis = 1)
 
 
-    clf = load(os.path.join(utils.DEFAULT_DB_FOLDER, "logreg.joblib"))
-    # names = [name[3:] for name in clf.feature_names_in_]
+    clf = load(os.path.join(utils.DEFAULT_DB_FOLDER, "gmhi1.joblib"))
+    print(clf.health_abundant)
+    print(clf.health_scarce)
     names = list(clf.feature_names_in_)
-    # print(names)
-    # print(df.columns)
 
     set_diff = set(names) - set(df.columns)
 
@@ -25,18 +25,9 @@ def get_clean_matrix():
     scaled = reindexed / reindexed.sum().sum()
     return scaled
 
-def preprocess(cleaned):
-    minmax = load(os.path.join(utils.DEFAULT_DB_FOLDER, "minmax.joblib"))
-    c = 0.00001
-    transformed = minmax.transform(np.log(cleaned + c))
-    return transformed
-
 def get_score():
-    warnings.filterwarnings("ignore")
-    cleaned = get_clean_matrix()
-    # print(cleaned)
-    preprocessed = preprocess(cleaned)
-    # print(preprocessed)
-    clf = load(os.path.join(utils.DEFAULT_DB_FOLDER, "logreg.joblib"))
-    gmhi_score = clf.decision_function(preprocessed)[0]
+    # df = get_clean_matrix()
+    from GMHI import GMHI
+    clf = load(os.path.join(utils.DEFAULT_DB_FOLDER, "gmhi1.joblib"))
+    gmhi_score = clf.decision_function(df)
     return gmhi_score

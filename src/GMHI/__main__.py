@@ -48,8 +48,7 @@ def main():
     up_to_date = prerun.check_versions()
     # if not up_to_date:
     #     return
-    prerun.check_and_install_databases()
-    input()
+    # prerun.check_and_install_databases()
     pipeline.run(args)
 
 

@@ -120,17 +120,17 @@ def profile_metagenome():
     print("Profiling metagenome")
     database_dir = os.path.join(utils.DEFAULT_DB_FOLDER, "clade_markers")
     cmd = [
-        "metaphlan",
+        "metaphlan2.py",
         "QC_1P.fastq.gz,QC_2P.fastq.gz",
         "--bowtie2db", database_dir,
         "--bowtie2out", "bowtieout.bowtie2.bz2", 
-        "--index", "mpa_v30_CHOCOPhlAn_201901",
+        "--index", "mpa_v20_m200",
         "--nproc", "16", "--input_type", "fastq", 
-        "-o", "metaphlan3.txt", "--add_viruses", "--unknown_estimation"
+        "-o", "metaphlan2.txt"
     ]
     subprocess.call(cmd)
     subprocess.call([
-        "merge_metaphlan_tables.py", "metaphlan3.txt", "-o", "merged.txt"
+        "merge_metaphlan_tables.py", "metaphlan2.txt", "-o", "merged.txt"
     ])
     path = os.path.join(utils.DEFAULT_DB_FOLDER, "species_only.sh")
     subprocess.call([path])
@@ -196,11 +196,11 @@ def run(args):
     subprocess.call(["cp", in1, "in1.fastq"])
     subprocess.call(["cp", in2, "in2.fastq"])
 
-    repair()
-    quality_control()
-    extract_adapters()
-    remove_human()
-    remove_adapters_and_crap_reads()
-    profile_metagenome()
+    # repair()
+    # quality_control()
+    # extract_adapters()
+    # remove_human()
+    # remove_adapters_and_crap_reads()
+    # profile_metagenome()
     health_index(args)
-    remove_intermediate()
+    # remove_intermediate()
