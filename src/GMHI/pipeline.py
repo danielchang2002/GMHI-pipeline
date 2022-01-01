@@ -130,7 +130,7 @@ def profile_metagenome():
     ]
     subprocess.call(cmd)
     subprocess.call([
-        "merge_metaphlan_tables.py", "metaphlan2.txt", "-o", "merged.txt"
+        "merge_metaphlan_tables.py", "metaphlan2.txt", ">", "merged.txt"
     ])
     path = os.path.join(utils.DEFAULT_DB_FOLDER, "species_only.sh")
     subprocess.call([path])
@@ -196,11 +196,11 @@ def run(args):
     subprocess.call(["cp", in1, "in1.fastq"])
     subprocess.call(["cp", in2, "in2.fastq"])
 
-    # repair()
-    # quality_control()
-    # extract_adapters()
-    # remove_human()
-    # remove_adapters_and_crap_reads()
-    # profile_metagenome()
+    repair()
+    quality_control()
+    extract_adapters()
+    remove_human()
+    remove_adapters_and_crap_reads()
+    profile_metagenome()
     health_index(args)
-    # remove_intermediate()
+    remove_intermediate()

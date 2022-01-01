@@ -3,6 +3,7 @@ from sklearn.metrics import balanced_accuracy_score
 import numpy as np
 import pandas as pd
 import sys
+from . import training_results
 
 if not sys.warnoptions:
     import warnings
@@ -14,17 +15,17 @@ cross validation compatibility
 """
 
 
-class GMHI(BaseEstimator):
+class GMHI_model(BaseEstimator):
 
-    def __init__(self, use_shannon=False, theta_f=1, theta_d=0):
+    def __init__(self, use_shannon=True, theta_f=1.4, theta_d=0.1):
         self.use_shannon = use_shannon
-        self.fitted = False
         self.thresh = 0.00001
         self.health_abundant = None
         self.health_scarce = None
         self.features = None
         self.theta_f = theta_f
         self.theta_d = theta_d
+        self.pre_fit()
 
     def fit(self, X, y):
         """
@@ -36,9 +37,13 @@ class GMHI(BaseEstimator):
             X = X.values
         if(isinstance(y, pd.DataFrame)):
             y = y.values
-        self.fitted = True
         difference, fold_change = self.get_proportion_comparisons(X, y)
         self.select_features(difference, fold_change)
+
+    def pre_fit(self):
+        self.features = training_results.features
+        self.health_abundant = training_results.health_abundant
+        self.health_scarce = training_results.health_scarce
 
     def get_proportion_comparisons(self, X, y):
         # get healthy and unhealthy samples
@@ -73,12 +78,10 @@ class GMHI(BaseEstimator):
         return columns[0]
 
     def decision_function(self, X):
-        if not self.fitted:
-            return None
+        # if not self.fitted:
+        #     return None
         if list(X.columns) != list(self.features):
             raise Exception("Model was trained with (different) feature names than input")
-        # if(isinstance(X, pd.DataFrame)):
-        #    X = X.values
         X_healthy_features = X[self.health_abundant]
         X_unhealthy_features = X[self.health_scarce]
         psi_MH = self.get_psi(X_healthy_features.values) / (
