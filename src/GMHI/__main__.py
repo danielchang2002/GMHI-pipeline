@@ -37,6 +37,7 @@ def main():
     args = parser.parse_args()
 
     in1, in2 = args.fastq1, args.fastq2
+
     print("Inputs:", in1, in2)
     if not os.path.exists(in1) or not os.path.exists(in2):
         print("file(s) do not exist")
@@ -45,9 +46,9 @@ def main():
         print("invalid file extensions")
         return
 
-    up_to_date = prerun.check_versions()
-    if not up_to_date:
-        return
+    # up_to_date = prerun.check_versions()
+    # if not up_to_date:
+    #     return
     prerun.check_and_install_databases()
     pipeline.run(args)
 

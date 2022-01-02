@@ -18,7 +18,6 @@ def repair():
             "outs=garbage",
         ]
     )
-    # subprocess.call(["rm", "garbage"])
 
 
 def quality_control():
@@ -129,9 +128,13 @@ def profile_metagenome():
         "-o", "metaphlan2.txt"
     ]
     subprocess.call(cmd)
-    subprocess.call([
-        "merge_metaphlan_tables.py", "metaphlan2.txt", ">", "merged.txt"
-    ])
+
+    cmd = [
+        "merge_metaphlan_tables.py", "metaphlan2.txt"
+    ]
+    with open('merged.txt', "w") as outfile:
+        subprocess.run(cmd, stdout=outfile)
+
     path = os.path.join(utils.DEFAULT_DB_FOLDER, "species_only.sh")
     subprocess.call([path])
 

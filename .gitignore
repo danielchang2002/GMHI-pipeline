@@ -141,6 +141,3 @@ dmypy.json
 cython_debug/
 
 # databases
-src/GMHI2/gmhi2_databases/*
-!src/GMHI2/gmhi2_databases/*.fa
-!src/GMHI2/gmhi2_databases/*.sh

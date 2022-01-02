@@ -26,13 +26,13 @@ def print_check_message(boolean):
 
 
 version_dict = {
-    "repair.sh": "38.90",
-    "fastqc": "0.11.8",
+    "repair.sh": "38",
+    "fastqc": "0.11",
     "bowtie2": "2.4.4",
-    "samtools": "1.14",
+    "samtools": "1.",
     "bedtools": "2.27.1",
     "trimmomatic": "0.39",
-    "metaphlan2.py": "2.96.1",
+    # "metaphlan2.py": "2.96.1",
 }
 
 

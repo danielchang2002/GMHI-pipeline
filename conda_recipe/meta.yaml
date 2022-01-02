@@ -14,23 +14,23 @@ requirements:
     - python=3.7
   run:
     - python=3.7
-    - bbmap=38.90
-    - fastqc=0.11.8
-    - bowtie2=2.4.4
-    - samtools=1.14
-    - bedtools=2.27.1
-    - trimmomatic=0.39
+    - bbmap
+    - fastqc
+    - bowtie2
+    - samtools
+    - bedtools
+    - trimmomatic
     - metaphlan2=2.96.1
-    - scikit-learn=1.0.1
-    # - joblib=1.1.0
+    - scikit-learn
+    - pandas
 
 test:
   imports:
-    - GMHI2
+    - GMHI
 
 about:
-  home: https://github.com/danielchang2002/GMHI2
+  home: https://github.com/danielchang2002/GMHI
   license: MIT
   license_family: MIT
-  summary: Gut microbiome health index 2
+  summary: Gut microbiome health index
 
