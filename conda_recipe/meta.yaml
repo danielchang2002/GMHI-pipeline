@@ -14,15 +14,15 @@ requirements:
     - python=3.7
   run:
     - python=3.7
-    - bbmap
-    - fastqc
-    - bowtie2
-    - samtools
-    - bedtools
-    - trimmomatic
+    - bbmap=38.93
+    - fastqc=0.11.9
+    - bowtie2=2.4.4
+    - samtools=0.1.19
+    - bedtools=2.30.0
+    - trimmomatic=0.39
     - metaphlan2=2.96.1
-    - scikit-learn
-    - pandas
+    - scikit-learn=1.0.1
+    - pandas=1.1.3
 
 test:
   imports:

@@ -67,9 +67,8 @@ def remove_human():
         "sort",
         "-n",
         "human.bam",
-        "-o",
-        "human_sorted.bam",
-        "--threads",
+        "human_sorted",
+        "-@",
         "16",
     ]
     subprocess.call(my_cmd)

@@ -46,9 +46,9 @@ def main():
         print("invalid file extensions")
         return
 
-    # up_to_date = prerun.check_versions()
-    # if not up_to_date:
-    #     return
+    up_to_date = prerun.check_versions()
+    if not up_to_date:
+        return
     prerun.check_and_install_databases()
     pipeline.run(args)
 

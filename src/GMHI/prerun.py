@@ -26,13 +26,13 @@ def print_check_message(boolean):
 
 
 version_dict = {
-    "repair.sh": "38",
-    "fastqc": "0.11",
+    "repair.sh": "38.93",
+    "fastqc": "0.11.9",
     "bowtie2": "2.4.4",
-    "samtools": "1.",
-    "bedtools": "2.27.1",
+    "samtools": "0.1.19",
+    "bedtools": "2.30.0",
     "trimmomatic": "0.39",
-    # "metaphlan2.py": "2.96.1",
+    "metaphlan2.py": "2.96.1",
 }
 
 
@@ -40,12 +40,12 @@ def check_tool(tool):
     gt = version_dict[tool]
     print(tool, "version:", gt)
     flag = "--version" if not tool == "trimmomatic" else "-version"
-
+    cmd = [tool, flag] if not tool == "samtools" else [tool]
     try:
         proc = subprocess.Popen(
-            [tool, flag], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
-        if not tool == "repair.sh":
+        if not tool == "repair.sh" and not tool == "samtools":
             output = proc.stdout.read().decode("ASCII")
         else:
             output = proc.stderr.read().decode("ASCII")
