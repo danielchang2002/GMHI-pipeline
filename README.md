@@ -74,7 +74,7 @@ Directory structure:
 Command:
 
 ```sh
-gmhi --fastq1 metagenome1.fastq --fastq2 metagenome2.fastq -o GMHI2.txt
+gmhi --fastq1 metagenome1.fastq --fastq2 metagenome2.fastq -o GMHI.txt
 ```
 
 Result:
