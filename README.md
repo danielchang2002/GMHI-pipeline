@@ -1,10 +1,10 @@
 # GMHI: Gut Microbiome Health Index
 
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmhi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmhi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/license.svg)](https://anaconda.org/danielchang2002/gmhi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmhi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi2/badges/installer/conda.svg)](https://conda.anaconda.org/danielchang2002)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi/badges/version.svg)](https://anaconda.org/danielchang2002/gmhi)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmhi)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi/badges/license.svg)](https://anaconda.org/danielchang2002/gmhi)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmhi)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmhi/badges/installer/conda.svg)](https://conda.anaconda.org/danielchang2002)
 
 ### Description
 
